@@ -18,6 +18,7 @@ jobs:
       - run: |                       #リリース対象アプリケーションのビルド
           go build -ldflags "-X main.version=${VERSION}" \
             -o "${RUNNER_TEMP}/example" go/example/main.go
+          ls "${RUNNER_TEMP}/example"
       - run: |                       #リリースノートの作成とアセットのアップロード
           gh release create "${VERSION}" --title "${VERSION}" --generate-notes
           gh release upload "${VERSION}" "${RUNNER_TEMP}/example"
